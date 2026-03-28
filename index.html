@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Massive Demo Page</title>
+
+<style>
+
+/* ===========================
+GLOBAL STYLES
+=========================== */
+
+body{
+font-family:Arial;
+background:#0f0f14;
+color:white;
+margin:0;
+padding:0;
+}
+
+header{
+background:#181820;
+padding:30px;
+text-align:center;
+font-size:28px;
+letter-spacing:3px;
+}
+
+section{
+padding:40px;
+border-bottom:1px solid #222;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+button{
+background:#6a5cff;
+border:none;
+padding:10px 20px;
+color:white;
+cursor:pointer;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+}
+
+.card{
+background:#1a1a25;
+padding:20px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.bigtext{
+line-height:1.8;
+opacity:0.8;
+}
+
+/* MASSIVE STYLE BLOCKS */
+
+.box1{background:#12121a}
+.box2{background:#14141d}
+.box3{background:#161621}
+.box4{background:#181825}
+.box5{background:#1a1a29}
+.box6{background:#1c1c2d}
+.box7{background:#1e1e31}
+.box8{background:#202035}
+.box9{background:#222239}
+.box10{background:#24243d}
+
+/* filler classes */
+
+.a1{color:#aaa}
+.a2{color:#bbb}
+.a3{color:#ccc}
+.a4{color:#ddd}
+.a5{color:#eee}
+
+.b1{padding:5px}
+.b2{padding:10px}
+.b3{padding:15px}
+.b4{padding:20px}
+.b5{padding:25px}
+
+.c1{margin:5px}
+.c2{margin:10px}
+.c3{margin:15px}
+.c4{margin:20px}
+.c5{margin:25px}
+
+</style>
+</head>
+
+<body>
+
+<header>
+MASSIVE SINGLE FILE WEBSITE
+</header>
+
+<section>
+<h2>Intro</h2>
+<p class="bigtext">
+
+This page exists purely to generate an extremely long HTML file.
+The goal is not beauty but size. Large CSS blocks, JavaScript utilities,
+and dynamic content generators all combine to produce thousands of
+elements.
+
+Scroll down and the page will continue expanding.
+
+</p>
+</section>
+
+
+<section>
+<h2>Dynamic Card Generator</h2>
+
+<button onclick="generateCards()">Generate 1000 Cards</button>
+
+<div class="grid" id="cardGrid"></div>
+
+</section>
+
+
+<section>
+<h2>Text Expansion Engine</h2>
+
+<button onclick="generateText()">Generate Massive Text</button>
+
+<div id="textContainer"></div>
+
+</section>
+
+
+<section>
+<h2>Expandable Sections</h2>
+
+<div id="accordion"></div>
+
+</section>
+
+
+<script>
+
+/* ============================
+UTILITY LIBRARY
+============================ */
+
+const Utils = {
+
+randomText(length){
+let chars="abcdefghijklmnopqrstuvwxyz ";
+let result="";
+for(let i=0;i<length;i++){
+result+=chars[Math.floor(Math.random()*chars.length)];
+}
+return result;
+},
+
+randomTitle(){
+let words=["Quantum","Nebula","Matrix","Engine","System","Portal","Node","Vector"];
+return words[Math.floor(Math.random()*words.length)]+" "+
+words[Math.floor(Math.random()*words.length)];
+},
+
+randomColor(){
+return "hsl("+Math.floor(Math.random()*360)+",70%,50%)";
+}
+
+};
+
+
+/* ============================
+CARD GENERATOR
+============================ */
+
+function generateCards(){
+
+let grid=document.getElementById("cardGrid");
+grid.innerHTML="";
+
+for(let i=0;i<1000;i++){
+
+let card=document.createElement("div");
+card.className="card";
+
+let title=document.createElement("h3");
+title.innerText=Utils.randomTitle();
+
+let text=document.createElement("p");
+text.innerText=Utils.randomText(120);
+
+card.appendChild(title);
+card.appendChild(text);
+
+grid.appendChild(card);
+
+}
+
+}
+
+
+/* ============================
+MASS TEXT GENERATOR
+============================ */
+
+function generateText(){
+
+let container=document.getElementById("textContainer");
+container.innerHTML="";
+
+for(let i=0;i<500;i++){
+
+let p=document.createElement("p");
+p.className="bigtext";
+p.innerText=Utils.randomText(300);
+
+container.appendChild(p);
+
+}
+
+}
+
+
+/* ============================
+ACCORDION BUILDER
+============================ */
+
+function buildAccordion(){
+
+let acc=document.getElementById("accordion");
+
+for(let i=0;i<200;i++){
+
+let wrapper=document.createElement("div");
+
+let button=document.createElement("button");
+button.innerText="Section "+i;
+
+let content=document.createElement("div");
+content.style.display="none";
+content.style.padding="10px";
+content.innerText=Utils.randomText(400);
+
+button.onclick=function(){
+
+if(content.style.display==="none"){
+content.style.display="block";
+}else{
+content.style.display="none";
+}
+
+};
+
+wrapper.appendChild(button);
+wrapper.appendChild(content);
+
+acc.appendChild(wrapper);
+
+}
+
+}
+
+buildAccordion();
+
+
+/* ============================
+DEV CONSOLE COMMANDS
+============================ */
+
+window.devTools={
+
+spawnBoxes(count){
+
+for(let i=0;i<count;i++){
+
+let d=document.createElement("div");
+d.style.height="30px";
+d.style.background=Utils.randomColor();
+document.body.appendChild(d);
+
+}
+
+},
+
+massParagraphs(count){
+
+for(let i=0;i<count;i++){
+
+let p=document.createElement("p");
+p.innerText=Utils.randomText(500);
+document.body.appendChild(p);
+
+}
+
+}
+
+};
+
+
+/* ============================
+BACKGROUND ANIMATION
+============================ */
+
+let hue=0;
+
+setInterval(()=>{
+
+hue+=1;
+
+document.body.style.background=
+"linear-gradient(180deg,hsl("+hue+",20%,8%),#000)";
+
+},80);
+
+
+/* ============================
+PERFORMANCE TEST
+============================ */
+
+function stressTest(){
+
+let start=performance.now();
+
+for(let i=0;i<50000;i++){
+
+let div=document.createElement("div");
+
+}
+
+let end=performance.now();
+
+console.log("Test time:",end-start);
+
+}
+
+</script>
+
+</body>
+</html>
